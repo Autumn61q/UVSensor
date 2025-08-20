@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/home"
+        android:title="首页"
+        android:icon="@drawable/map">
+    </item>
+
+    <item android:id="@+id/config"
+        android:title="配置"
+        android:icon="@drawable/config">
+    </item>
+
+    <item android:id="@+id/me"
+        android:title="我"
+        android:icon="@drawable/me">
+    </item>
+</menu>

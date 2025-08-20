@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.UVSensor" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your light theme here. -->
+         <item name="colorPrimary">@color/deep_green</item>
+    </style>
+
+    <style name="Theme.UVSensor" parent="Base.Theme.UVSensor" />
+</resources>

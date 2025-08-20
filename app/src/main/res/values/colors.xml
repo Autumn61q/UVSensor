@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="deep_green">#DF00960F</color>
+    <color name="gray">	#DCDCDC</color>
+    <color name="gps_1">#0ebeff</color>
+    <color name="network_1">#0f4814</color>
+</resources>

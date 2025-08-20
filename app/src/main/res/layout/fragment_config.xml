@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ConfigFragment"
+    android:orientation="vertical">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_itemType_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:listitem="@layout/sensor_item_layout"/>
+
+</LinearLayout>
+<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    tools:context=".ConfigFragment">-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        android:padding="16dp">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="传感器配置"-->
+<!--            android:textSize="24sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginBottom="20dp"/>-->
+
+<!--        &lt;!&ndash; 运动传感器 &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="运动传感器"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginBottom="8dp"/>-->
+
+<!--        <Switch-->
+<!--            android:id="@+id/swt_accelerometer"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="加速度传感器"-->
+<!--            android:textSize="16sp"-->
+<!--            android:layout_marginBottom="8dp"/>-->
+
+<!--        <Switch-->
+<!--            android:id="@+id/swt_accelerometer_uncalibrated"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="加速度传感器（未校准）"-->
+<!--            android:textSize="16sp"-->
+<!--            android:layout_marginBottom="8dp"/>-->
+
+<!--        <Switch-->
+<!--            android:id="@+id/swt_gyroscope"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="陀螺仪"-->
+<!--            android:textSize="16sp"-->
+<!--            android:layout_marginBottom="8dp"/>-->
+
+<!--        <Switch-->
+<!--            android:id="@+id/swt_gyroscope_uncalibrated"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="陀螺仪（未校准）"-->
+<!--            android:textSize="16sp"-->
+<!--            android:layout_marginBottom="8dp"/>-->
+
+<!--        <Switch-->
+<!--            android:id="@+id/swt_gravity"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="重力传感器"-->
+<!--            android:textSize="16sp"-->
+<!--            android:layout_marginBottom="8dp"/>-->
+
+<!--        <Switch-->
+<!--            android:id="@+id/swt_linear_acceleration"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="线性加速度"-->
+<!--            android:textSize="16sp"-->
+<!--            android:layout_marginBottom="8dp"/>-->
+
+<!--        <Switch-->
+<!--            android:id="@+id/swt_rotation_vector"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="旋转矢量"-->
+<!--            android:textSize="16sp"-->
+<!--            android:layout_marginBottom="8dp"/>-->
+
+<!--        &lt;!&ndash; 位置传感器 &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="位置传感器"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginBottom="8dp"/>-->
+
+<!--        <Switch-->
+<!--            android:id="@+id/swt_magnetic_field"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="磁场传感器"-->
+<!--            android:textSize="16sp"-->
+<!--            android:layout_marginBottom="8dp"/>-->
+
+<!--&lt;!&ndash;        <Switch&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/swt_orientation"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:text="方向传感器 - 已弃用"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:textSize="16sp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_marginBottom="8dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:enabled="false"/>&ndash;&gt;-->
+
+<!--        &lt;!&ndash; 环境传感器 &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="环境传感器"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginBottom="8dp"/>-->
+
+<!--        <Switch-->
+<!--            android:id="@+id/swt_light"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="光线传感器"-->
+<!--            android:textSize="16sp"-->
+<!--            android:layout_marginBottom="8dp"/>-->
+
+<!--        <Switch-->
+<!--            android:id="@+id/swt_pressure"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="气压传感器"-->
+<!--            android:textSize="16sp"-->
+<!--            android:layout_marginBottom="8dp"/>-->
+
+<!--        <Switch-->
+<!--            android:id="@+id/swt_proximity"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="接近传感器"-->
+<!--            android:textSize="16sp"-->
+<!--            android:layout_marginBottom="8dp"/>-->
+
+<!--        <Switch-->
+<!--            android:id="@+id/swt_ambient_temperature"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="环境温度"-->
+<!--            android:textSize="16sp"-->
+<!--            android:layout_marginBottom="8dp"/>-->
+
+<!--        <Switch-->
+<!--            android:id="@+id/swt_relative_humidity"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="湿度传感器"-->
+<!--            android:textSize="16sp"-->
+<!--            android:layout_marginBottom="8dp"/>-->
+
+<!--&lt;!&ndash;        <Switch&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/swt_temperature"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:text="温度传感器 - 已弃用"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:textSize="16sp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_marginBottom="16dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:enabled="false"/>&ndash;&gt;-->
+
+<!--    </LinearLayout>-->
+<!--</ScrollView>-->

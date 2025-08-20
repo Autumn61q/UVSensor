@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:gravity="center_vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+<!--        <ImageView-->
+<!--            android:id="@+id/imageView"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            app:srcCompat="@drawable/rui_logo" />-->
+
+        <TextView
+            android:id="@+id/tv_notification_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="没有名字的软件"
+            android:textColor="#8F000000"
+            android:textSize="12sp"
+            android:layout_marginLeft="5sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_notification_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="正在记录"
+            android:textColor="@color/black"
+            android:layout_marginLeft="5sp"
+            android:layout_below="@+id/tv_notification_title"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_notification_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/iv_StartPause"
+            android:layout_centerVertical="true"
+            android:text="00:00"/>
+
+        <ImageView
+            android:id="@+id/iv_StartPause"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/pause_recording3"
+            android:layout_toLeftOf="@+id/iv_Stop">
+
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/iv_Stop"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/stop_recording3"
+            android:layout_alignParentRight="true">
+
+        </ImageView>
+    </RelativeLayout>
+
+</LinearLayout>

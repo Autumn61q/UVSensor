@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:orientation="vertical">
+
+    <CheckBox
+        android:id="@+id/cb_showGPS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/gps_1"
+        android:text="GPS轨迹"
+        android:checked="true"/>
+
+    <CheckBox
+        android:id="@+id/cb_showNetwork"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/network_1"
+        android:text="网络轨迹"
+        android:checked="true"/>
+
+</LinearLayout>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">UVSensor</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="motionSensor">运动传感器</string>
+    <string name="environmentalSensor">环境传感器</string>
+    <string name="positionSensor">位置传感器</string>
+
+    <string name="intro2accelerometer">加速度传感器用于测量施加在设备上的加速度，包括重力。\n当设备放在桌子上（且未加速）时，加速度计读出的加速度大小为 g = 9.81 m/s2。同样，当设备处于自由落体状态时，会以 9.81 m/s2 的速度快速向地面加速，此时加速度计读出的加速度大小为 g = 0 m/s2。</string>
+    <string name="db_intro_accerometer">sqlite表的属性，在想能不能动态设置，就是直接读取sqlite的属性，免得一个一个写</string>
+</resources>
