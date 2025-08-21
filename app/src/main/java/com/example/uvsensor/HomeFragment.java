@@ -422,6 +422,7 @@ public class HomeFragment extends Fragment {
         };
 
         // 因为该popupwindow会多次初始化。用这两个变量来让它不要忘记之前的设定
+        // 又，我们默认两个按钮都是打开的（在xml写的），所以我们只需要判断要不要把它们关上就行
         if (!showGPS) {
             cbShowGPS.setChecked(false);
         }
