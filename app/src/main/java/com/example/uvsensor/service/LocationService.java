@@ -30,6 +30,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 
+import com.example.uvsensor.MainActivity;
 import com.example.uvsensor.R;
 import com.example.uvsensor.data.GlobalContants;
 import com.example.uvsensor.listener.AddressCallback;
@@ -65,7 +66,6 @@ public class LocationService extends Service {
     private MySensorEventListener sensorEventListener;
     private RecordingDatabaseHelper recordingDatabaseHelper;
     private String createdTime;
-
     private BroadcastReceiver notificaitonReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -83,11 +83,17 @@ public class LocationService extends Service {
                     Log.d("LocationService", "stop is clicked");
                     break;
                 case GlobalContants.RETURNHOME:
-//                    returnHome();
+                    returnHome();
                     break;
             }
         }
     };
+
+    private void returnHome() {
+        Intent intent = new Intent("com.example.uvsensor.ACTION_RETURN_HOME");
+        intent.setPackage(getPackageName());
+        sendBroadcast(intent);
+    }
 
     private LocationListener locationListener = new LocationListener() {
         @Override
@@ -136,15 +142,10 @@ public class LocationService extends Service {
         createdTime = String.valueOf(System.currentTimeMillis());
         recordingDatabaseHelper = new RecordingDatabaseHelper(this, createdTime);
 
-//        Log.d("LocationService", "onCreate: createdTime=" + createdTime);
-//        Log.d("LocationService", "onCreate: db_name=" + recordingDatabaseHelper.getDatabaseName());
-
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         sensorEventListener = new MySensorEventListener(recordingDatabaseHelper);
 
 //        getLocation(); // Initialize location tracking 去onStartCommand里面调用，后者比onCreate完调用。若在此时调用，locationProviders为空
-
-//        Log.d("LocationService", "Service created");
 
         IntentFilter notificationFilter = new IntentFilter();
         notificationFilter.addAction(GlobalContants.STARTPAUSE);
@@ -268,10 +269,10 @@ public class LocationService extends Service {
         PendingIntent stopPendIntent = PendingIntent.getBroadcast(this, 1, stopIntent, flags);
         remoteView.setOnClickPendingIntent(R.id.iv_Stop, stopPendIntent);
 
-//        Intent ReturnHomeIntent = new Intent(GlobalContants.RETURNHOME);
-//        ReturnHomeIntent.setPackage(getPackageName());
-//        PendingIntent ReturnHomePendIntent = PendingIntent.getBroadcast(this, 2, ReturnHomeIntent, flags);
-//        remoteView.setOnClickPendingIntent(R.id.rl_notification_container, ReturnHomePendIntent);
+        Intent ReturnHomeIntent = new Intent(GlobalContants.RETURNHOME);
+        ReturnHomeIntent.setPackage(getPackageName());
+        PendingIntent ReturnHomePendIntent = PendingIntent.getBroadcast(this, 2, ReturnHomeIntent, flags);
+        remoteView.setOnClickPendingIntent(R.id.rl_notification_container, ReturnHomePendIntent);
         
         
         notification = new NotificationCompat.Builder(this, CHANNEL_ID)
@@ -376,11 +377,11 @@ public class LocationService extends Service {
             // getLastKnownLocation returns the most recent cached location from the past currently available.
             // 缺点就是返回的是之前的位置（从别的软件获取的或者怎么着的），优点是快和省电
             // Will return null if no such cached location is available. 一般第一次调用时会返回null
-            // 无所谓了，我们就让最后一个locationProvider提供位置吧，并且我们改变一下地图的中心点
             location = locationManager.getLastKnownLocation(locationProvider);
-            if (addressCallback != null) {
-                addressCallback.onGetFirstLocation(location);
-            }
+            // 无所谓了，我们就让最后一个locationProvider提供位置吧，并且我们改变一下地图的中心点
+//            if (addressCallback != null) {
+//                addressCallback.onGetFirstLocation(location);
+//            }
         }
 
         if (location != null) {

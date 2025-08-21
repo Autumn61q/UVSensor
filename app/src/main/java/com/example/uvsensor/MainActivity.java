@@ -8,8 +8,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -32,6 +35,16 @@ public class MainActivity extends AppCompatActivity {
     private DetailFragment detailFragment;
     private Bundle detailFragmentBundle;
     private OnBackPressedCallback callback;
+    private final BroadcastReceiver returnHomeReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // 切换到主页
+//            new android.os.Handler().postDelayed(() -> {
+//                bottomNavigationView.setSelectedItemId(R.id.home);
+//                selectedFragment(0);
+//            }, 500);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +75,11 @@ public class MainActivity extends AppCompatActivity {
 
         // 默认在config这个fragment
         selectedFragment(1);
+
+        // 接受service发出的返回homeFragment的广播
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            registerReceiver(returnHomeReceiver, new IntentFilter("com.example.uvsensor.ACTION_RETURN_HOME"), Context.RECEIVER_NOT_EXPORTED);
+        }
 
     }
 
@@ -111,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         getOnBackPressedDispatcher().addCallback(this, callback);
 
     }
-    private void selectedFragment(int position) {
+    public void selectedFragment(int position) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();  // 一个fragment管理器
         hideFragment(fragmentTransaction);
 
@@ -214,4 +232,9 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(returnHomeReceiver);
+    }
 }

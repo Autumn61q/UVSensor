@@ -107,6 +107,7 @@ public class HomeFragment extends Fragment {
     private Marker marker_GPS, marker_Network;
     private com.amap.api.maps.model.Circle circle_GPS, circle_Network;
     private Timer timer;
+    private Boolean needChangeMapCenter;  // 是否需要改变地图的中心点
     private long validTime;  // 就是有效记录的时长。等于总时长减去暂停的时长
     private long startTime;
     boolean compensatedForStartTime = false;  // 就是当暂停结束后，我们为 start += pause_interval，为了确保只加一次，我们引入这个布尔变量
@@ -143,8 +144,16 @@ public class HomeFragment extends Fragment {
                     lat = transformedLocation[0];
                     lng = transformedLocation[1];
 
+                    Log.d("HomeFragment", "onGetLocation: lat=" + lat + ", lng=" + lng + ", needChangeMapCenter=" + needChangeMapCenter);
+
                     if (aMap != null && isAdded() && isVisible()) {
-//                        addLocationToMap(lat, lng, acc);
+
+                        if (needChangeMapCenter) {
+                            aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng), 18));
+                            Log.d("HomeFragment", "aMap.moveCamera called, lat=" + lat + ", lng=" + lng);
+                            needChangeMapCenter = false;
+                        }
+
                         addLocation(lat, lng, acc, src);
 
 //                        如果用户要求显示，我们才绘制
@@ -156,15 +165,18 @@ public class HomeFragment extends Fragment {
                         }
 
                     } else {
+
+                        needChangeMapCenter = true;
+
                         addLocation(lat, lng, acc, src);
                         Log.d("HomeFragment", "Map not ready, stored location for later");
                     }
                 }
 
-                @Override
-                public void onGetFirstLocation(Location location) {
-                    checkMapReady(location);
-                }
+//                @Override
+//                public void onGetFirstLocation(Location location) {
+//                    checkMapReady();
+//                }
             });
 
             locationBinder.setRecordingStateListener(new RecordingStateListener() {
@@ -282,6 +294,8 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        needChangeMapCenter = true;
+
         showGPS = true;
         showNetwork = true;
 
@@ -357,10 +371,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        checkMapReady(null);
-        
-        // 检查是否有正在运行的Service，如果有则恢复UI状态
-//        checkAndRestoreRecordingState();
+        checkMapReady();
 
     }
 
@@ -381,11 +392,6 @@ public class HomeFragment extends Fragment {
         CheckBox cbShowNetwork = dialogView.findViewById(R.id.cb_showNetwork);
 
         CompoundButton.OnCheckedChangeListener listener = (buttonView, isChecked) -> {
-//            // 如果两个都没选，强制至少选当前这个
-//            if (!cbShowGPS.isChecked() && !cbShowNetwork.isChecked()) {
-//                buttonView.setChecked(true);  // 就是当用户把两个都勾掉的时候，我们把用户勾掉当前按钮再勾回来
-//                Toast.makeText(getContext(), "至少选择一个轨迹", Toast.LENGTH_SHORT).show();
-//            }
 
             if (buttonView == cbShowGPS) {
                 showGPS = isChecked;
@@ -538,17 +544,17 @@ public class HomeFragment extends Fragment {
     }
 
     //    当页面可见时初始化地图，否则就过会儿继续check
-    private void checkMapReady(Location location) {
+    private void checkMapReady() {
 
         if (mMapView != null && isAdded() && isVisible()) {  // isAdded() && isVisible() 是  androidx.fragment.app.Fragment 包中的，所以你可以猜出来它们是干什么的
             if (aMap == null) {
                 aMap = mMapView.getMap();
             }
-
-            // 改变地图中心点
-            if (location != null) {
-                aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 10));
-            }
+//
+//            // 改变地图中心点
+//            if (location != null) {
+//                aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 10));
+//            }
 
             // 获取地图UI设置
             UiSettings uiSettings = aMap.getUiSettings();
@@ -569,7 +575,7 @@ public class HomeFragment extends Fragment {
         } else {
             new android.os.Handler().postDelayed(() -> {
                 if (isAdded() && isVisible()) {
-                    checkMapReady(location);
+                    checkMapReady();
                 }
             }, 500);
         }
@@ -904,21 +910,19 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
         Log.d("HomeFragment", "onResume is called");
-
+        Log.d("HomeFragment", "onResume is called, needChangeMapCenter=" + needChangeMapCenter);
         mMapView.onResume();  // 重新绘制加载地图
         if (aMap == null) {
-            checkMapReady(null);
+            checkMapReady();
         }
+        // 这一行是必要的，不然很可能resume之后并不改变中心点
+        needChangeMapCenter = true;
     }
 
     @Override
     public void onPause() {
         super.onPause();
         mMapView.onPause();
-//        if (timer != null) {
-//            timer.cancel();
-//            timer = null;
-//        }
     }
 
     private void cleanupService(boolean fromNotification) {
