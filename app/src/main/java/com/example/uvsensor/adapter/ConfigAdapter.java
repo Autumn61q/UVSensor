@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -101,8 +102,17 @@ public class ConfigAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                     }
                 });
             } else {
-                sensorViewHolder.sensor_switch.setEnabled(false);  // 无法打开
+//                sensorViewHolder.sensor_switch.setEnabled(false);  // 无法打开
                 sensorViewHolder.sensor_switch.setChecked(false);  // 关闭开关
+                sensorViewHolder.sensor_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                        if (isChecked) {
+                            Toast.makeText(context, "该设备不含" + sensorType.getItem_name(), Toast.LENGTH_SHORT).show();
+                            compoundButton.setChecked(false);
+                        }
+                    }
+                });
             }
 
             sensorViewHolder.iv_detail.setOnClickListener(new View.OnClickListener() {

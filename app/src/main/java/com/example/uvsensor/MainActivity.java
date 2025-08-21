@@ -96,18 +96,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        callback = new OnBackPressedCallback(true) {
-//            @Override
-//            public void handleOnBackPressed() {
-//
-//                if (homeFragment != null) {
-//                    homeFragment.finishRecording(false);
-//                }
-//                showExitConfirmationDialog();
-//            }
-//        };
-//
-//        getOnBackPressedDispatcher().addCallback(this, callback);
+        callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // 如果详情页在显示，先销毁详情页
+                if (detailFragment != null) {
+                    destoryDetailFragment();
+                    return;
+                }
+                // 已经在主页面，直接退到后台，不销毁 Activity
+                moveTaskToBack(true);
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
+
     }
     private void selectedFragment(int position) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();  // 一个fragment管理器
