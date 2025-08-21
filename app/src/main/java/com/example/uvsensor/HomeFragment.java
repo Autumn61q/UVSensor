@@ -227,12 +227,43 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         }
 
+
         locationPermission = registerForActivityResult(new ActivityResultContracts.RequestPermission(), result -> {
             // 权限申请结果
             Log.d(GlobalContants.TAG, "位置权限申请结果: " + result);
         });
 
-        locationPermission.launch(Manifest.permission.ACCESS_FINE_LOCATION);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            ActivityResultLauncher<String> notificationPermissionLauncher =
+                    registerForActivityResult(new ActivityResultContracts.RequestPermission(), result -> {
+                        Log.d(GlobalContants.TAG, "通知权限申请结果: " + result);
+                        if (!result) {
+                            Toast.makeText(requireContext(), "通知权限被拒绝，部分功能可能无法使用", Toast.LENGTH_SHORT).show();
+                        }
+                        // 通知权限弹窗结束后再请求位置权限
+                        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+                                != PackageManager.PERMISSION_GRANTED) {
+                            locationPermission.launch(Manifest.permission.ACCESS_FINE_LOCATION);
+                        }
+                    });
+
+            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+            } else {
+                // 如果通知权限已授权，直接请求位置权限
+                if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    locationPermission.launch(Manifest.permission.ACCESS_FINE_LOCATION);
+                }
+            }
+        } else {
+            // 低版本直接请求位置权限
+            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
+                locationPermission.launch(Manifest.permission.ACCESS_FINE_LOCATION);
+            }
+        }
 
         storagePermission = registerForActivityResult(new ActivityResultContracts.RequestPermission(), result -> {
             // 权限申请结果
@@ -334,6 +365,10 @@ public class HomeFragment extends Fragment {
     }
 
     private void chooseDrawingTrack() {
+
+        Log.d("HomeFragment", "showGPS is " + showGPS);
+        Log.d("HomeFragment", "showNetwork is " + showNetwork);
+
         if (locationProviders == null || locationProviders.isEmpty()) {
             Toast.makeText(requireContext(), "记录未开始", Toast.LENGTH_SHORT).show();
             return;
@@ -360,8 +395,8 @@ public class HomeFragment extends Fragment {
                         float avg_acc = getAccuracyByColor(colors_GPS.get(colors_GPS.size() - 1));
                         drawTracks(avg_acc, LocationManager.GPS_PROVIDER);
                     } else {
-                        Toast.makeText(requireContext(), "暂无轨迹记录，请稍后重试", Toast.LENGTH_SHORT).show();
-                        cbShowGPS.setChecked(false);
+//                        Toast.makeText(requireContext(), "暂无轨迹记录，请稍后重试", Toast.LENGTH_SHORT).show();
+//                        cbShowGPS.setChecked(false);
                     }
                 }
                 else {
@@ -376,8 +411,8 @@ public class HomeFragment extends Fragment {
                         float avg_acc = getAccuracyByColor(colors_Network.get(colors_Network.size() - 1));
                         drawTracks(avg_acc, LocationManager.NETWORK_PROVIDER);
                     } else {  // 如果没轨迹的话我们就霸道地取消掉用户的勾选吧。哪天良心发现的话就把这个逻辑完善一下。
-                        Toast.makeText(requireContext(), "暂无轨迹记录，请稍后重试", Toast.LENGTH_SHORT).show();
-                        cbShowNetwork.setChecked(false);
+//                        Toast.makeText(requireContext(), "暂无轨迹记录，请稍后重试", Toast.LENGTH_SHORT).show();
+//                        cbShowNetwork.setChecked(false);
                     }
                 } else {
                     clearTracks(LocationManager.NETWORK_PROVIDER);
@@ -386,17 +421,18 @@ public class HomeFragment extends Fragment {
 
         };
 
+        // 因为该popupwindow会多次初始化。用这两个变量来让它不要忘记之前的设定
+        // 又，我们默认两个按钮都是打开的（在xml写的），所以我们只需要判断要不要把它们关上就行
+        if (!showGPS) {
+            cbShowGPS.setChecked(false);
+        }
+        if (!showNetwork) {
+            cbShowNetwork.setChecked(false);
+        }
+
         // 如果按钮已经不可点击，那监听等于没设置
         cbShowGPS.setOnCheckedChangeListener(listener);
         cbShowNetwork.setOnCheckedChangeListener(listener);
-
-        // 因为该popupwindow会多次初始化。用这两个变量来让它不要忘记之前的设定
-        if (showGPS) {
-            cbShowGPS.setChecked(true);
-        }
-        if (showNetwork) {
-            cbShowNetwork.setChecked(true);
-        }
 
         // 提醒一下，不要忘了showGPS和showNetwork这两个布尔变量的对应调整啊
         if (!locationProviders.contains((LocationManager.GPS_PROVIDER))) {

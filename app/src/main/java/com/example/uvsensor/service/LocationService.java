@@ -269,7 +269,8 @@ public class LocationService extends Service {
         remoteView.setOnClickPendingIntent(R.id.iv_Stop, stopPendIntent);
 
 //        Intent ReturnHomeIntent = new Intent(GlobalContants.RETURNHOME);
-//        PendingIntent ReturnHomePendIntent = PendingIntent.getBroadcast(this, 0, ReturnHomeIntent, flags);
+//        ReturnHomeIntent.setPackage(getPackageName());
+//        PendingIntent ReturnHomePendIntent = PendingIntent.getBroadcast(this, 2, ReturnHomeIntent, flags);
 //        remoteView.setOnClickPendingIntent(R.id.rl_notification_container, ReturnHomePendIntent);
         
         

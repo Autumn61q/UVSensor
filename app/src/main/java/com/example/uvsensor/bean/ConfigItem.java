@@ -3,7 +3,7 @@ package com.example.uvsensor.bean;
 import java.io.Serializable;
 
 public abstract class ConfigItem implements Serializable {  // 就是它的子类现在有SensorType和LocationType
-    private String item_name;
+    private String item_name; // 就是中文的名字，用来展示给用户看
     private String item_table_name;  // 数据库对应的名字，从global constant里面找table结尾的变量名
     public abstract int getType();
 
