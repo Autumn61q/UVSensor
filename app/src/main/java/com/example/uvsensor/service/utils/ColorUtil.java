@@ -16,10 +16,10 @@ public class ColorUtil {
     public static int GPS_4 = Color.parseColor("#afe9ff");
 
     // Network是绿色系
-    public static int NETWORK_1 = Color.parseColor("#0f4814");
-    public static int NETWORK_2 = Color.parseColor("#2a5c2e");
-    public static int NETWORK_3 = Color.parseColor("#447148");
-    public static int NETWORK_4 = Color.parseColor("#5f8562");
+    public static int NETWORK_1 = Color.parseColor("#26ba58");
+    public static int NETWORK_2 = Color.parseColor("#56c97d");
+    public static int NETWORK_3 = Color.parseColor("#9fe0b5");
+    public static int NETWORK_4 = Color.parseColor("#cff0da");
 
 
     public static int adjustAlpha(int color, float factor) {

@@ -5,5 +5,9 @@
     <color name="deep_green">#DF00960F</color>
     <color name="gray">	#DCDCDC</color>
     <color name="gps_1">#0ebeff</color>
-    <color name="network_1">#0f4814</color>
+    <color name="network_1">#26ba58</color>
+    <!--上方状态栏颜色在MainActivity里面改-->
+    <color name="TopStatusColor">#FFFFFFFF</color>
+    <!--底部导航栏颜色在主题里面改-->
+    <color name="BottomNaviColor">#5193E4</color>
 </resources>

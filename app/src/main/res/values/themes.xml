@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.UVSensor" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your light theme here. -->
-         <item name="colorPrimary">@color/deep_green</item>
+         <item name="colorPrimary">@color/BottomNaviColor</item>
     </style>
 
     <style name="Theme.UVSensor" parent="Base.Theme.UVSensor" />

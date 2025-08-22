@@ -3,6 +3,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="GPSLocationTYPE">GPS定位</string>
+    <string name="GPSLocationIntro">就是GPS定位</string>
 
     <string name="motionSensor">运动传感器</string>
     <string name="environmentalSensor">环境传感器</string>

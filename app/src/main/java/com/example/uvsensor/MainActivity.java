@@ -64,7 +64,12 @@ public class MainActivity extends AppCompatActivity {
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(ContextCompat.getColor(this, R.color.deep_green));
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.TopStatusColor));
+
+            // 设置状态栏文字为黑色（深色主题）
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            }
         }
 
         Log.d("MainActivity", "onCreating is called");
