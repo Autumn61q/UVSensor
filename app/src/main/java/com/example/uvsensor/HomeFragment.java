@@ -377,13 +377,16 @@ public class HomeFragment extends Fragment {
 
     private void chooseDrawingTrack() {
 
-        Log.d("HomeFragment", "showGPS is " + showGPS);
-        Log.d("HomeFragment", "showNetwork is " + showNetwork);
+//        Log.d("HomeFragment", "showGPS is " + showGPS);
+//        Log.d("HomeFragment", "showNetwork is " + showNetwork);
 
         if (locationProviders == null || locationProviders.isEmpty()) {
             Toast.makeText(requireContext(), "记录未开始", Toast.LENGTH_SHORT).show();
             return;
         }
+//
+//        Log.d("HomeFragment", "location Providers are " + locationProviders);
+//        Log.d("HomeFragment", "config list is " + configList);
 
 //        Dialog dialog = new Dialog(requireContext());
         View dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.draw_option_dialog_layout, null);
@@ -495,7 +498,7 @@ public class HomeFragment extends Fragment {
 
     // 混合的方式创建service
     private void startRecordingService() {
-        locationProviders = ((MainActivity) requireActivity()).configFragment.getLocationConfigList();
+        locationProviders = new ArrayList<>(((MainActivity) requireActivity()).configFragment.getLocationConfigList());
 
         if (locationProviders.isEmpty()) {
             BtStartPause.setImageResource(R.drawable.start_recording3);
@@ -504,7 +507,7 @@ public class HomeFragment extends Fragment {
             return;
         }
 
-        configList = ((MainActivity) requireActivity()).configFragment.getSensorConfigList();
+        configList = new ArrayList<>(((MainActivity) requireActivity()).configFragment.getSensorConfigList());
 
 //        Log.d("HomeFragment:StartRecordingService", "configList is " + configList);
 //        Log.d("HomeFragment:StartRecordingService", "locationProviders is " + locationProviders);
@@ -550,11 +553,6 @@ public class HomeFragment extends Fragment {
             if (aMap == null) {
                 aMap = mMapView.getMap();
             }
-//
-//            // 改变地图中心点
-//            if (location != null) {
-//                aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 10));
-//            }
 
             // 获取地图UI设置
             UiSettings uiSettings = aMap.getUiSettings();
@@ -780,6 +778,13 @@ public class HomeFragment extends Fragment {
                         latLngs_network.clear();
                     }
 
+                    if (!locationProviders.isEmpty()) {
+                        locationProviders.clear();
+                    }
+                    if (!configList.isEmpty()) {
+                        configList.clear();
+                    }
+
                     colors_GPS.clear();
                     colors_Network.clear();
 
@@ -874,7 +879,8 @@ public class HomeFragment extends Fragment {
                 if (!TextUtils.isEmpty(serviceCreatedTime)) {
                     SimpleDateFormat isoFormat = new SimpleDateFormat("yyyyMMdd-HH-mm-ss", Locale.getDefault());  // "T" simply separates DATE from TIME, means "Time follows"
                     isoFormat.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
-                    dir = new File(requireContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), String.format("UVSensors/%s", isoFormat.format(new Date(Long.parseLong(serviceCreatedTime)))));
+                    String dir_name = String.format("UVSensors/%s", isoFormat.format(new Date(Long.parseLong(serviceCreatedTime))) + "TO" + isoFormat.format(new Date().getTime()));
+                    dir = new File(requireContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), dir_name);
                 }
             }
 

@@ -181,25 +181,10 @@ public class DetailFragment extends Fragment {
         Log.d("DetailFragment", "setLocationData() called");
         ArrayList<Entry> accs = new ArrayList<>();
 
-        if (recordingDatabaseHelper == null) {
-            Log.w("DetailFragment", "recordingDatabaseHelper is null, trying to reinitialize");
-            // 尝试重新初始化
-            try {
-                if (((MainActivity) requireActivity()).homeFragment != null) {
-                    recordingDatabaseHelper = ((MainActivity) requireActivity()).homeFragment.getDataBaseHelper();
-                    Log.d("DetailFragment", "recordingDatabaseHelper reinitialized successfully");
-                } else {
-                    Log.e("DetailFragment", "homeFragment is null, cannot initialize recordingDatabaseHelper");
-                    return;
-                }
-            } catch (Exception e) {
-                Log.e("DetailFragment", "Failed to reinitialize recordingDatabaseHelper: " + e.getMessage());
-                return;
+        if (recordingDatabaseHelper == null || item == null) {
+            if (lineChart != null) {
+//                lineChart.setVisibility(View.GONE);
             }
-        }
-
-        if (item == null) {
-            Log.e("DetailFragment", "item is null");
             return;
         }
 

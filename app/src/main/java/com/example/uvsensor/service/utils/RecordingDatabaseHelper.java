@@ -181,29 +181,6 @@ public class RecordingDatabaseHelper extends SQLiteOpenHelper {
         return 1; // Success indicator (actual row ID not available in batch mode)
     }
 
-    public long insertLocationData(Location location) {
-        ContentValues values = new ContentValues();
-//        values.put("time", getCurrentTime.get());
-//        values.put("time", new Date().getTime());  // 用长整型吧
-        values.put("time", getCurrentTime.int2readable(new Date().getTime()));
-//        values.put("time", String.valueOf(sensorEvent.timestamp));
-        values.put("lat", location.getLatitude());
-        values.put("lng", location.getLongitude());
-        values.put("acc", location.getAccuracy());
-
-        String tableName = null;
-        String locationProvider = location.getProvider();
-        if (LocationManager.GPS_PROVIDER.equals(locationProvider)) {
-            tableName = GlobalContants.LOCATION_GPS_TABLE;
-        } else if (LocationManager.NETWORK_PROVIDER.equals(locationProvider)) {
-            tableName = GlobalContants.LOCATION_NETWORK_TABLE;
-        }
-
-        addToBatch(tableName, values);
-        return 1;
-    }
-
-
     // 3轴传感器数据插入方法
     public long insertAccelerometerData(SensorEvent sensorEvent) {
         return insert3AxisData(ACCELEROMETER_TABLE, sensorEvent);
@@ -223,6 +200,28 @@ public class RecordingDatabaseHelper extends SQLiteOpenHelper {
 
     public long insertMagneticFieldData(SensorEvent sensorEvent) {
         return insert3AxisData(MAGNETIC_FIELD_TABLE, sensorEvent);
+    }
+
+    public long insertLocationData(Location location) {
+        ContentValues values = new ContentValues();
+//        values.put("time", getCurrentTime.get());
+//        values.put("time", new Date().getTime());  // 用长整型吧
+        values.put("time", getCurrentTime.locationTime(new Date().getTime()));
+//        values.put("time", String.valueOf(sensorEvent.timestamp));
+        values.put("lat", location.getLatitude());
+        values.put("lng", location.getLongitude());
+        values.put("acc", location.getAccuracy());
+
+        String tableName = null;
+        String locationProvider = location.getProvider();
+        if (LocationManager.GPS_PROVIDER.equals(locationProvider)) {
+            tableName = GlobalContants.LOCATION_GPS_TABLE;
+        } else if (LocationManager.NETWORK_PROVIDER.equals(locationProvider)) {
+            tableName = GlobalContants.LOCATION_NETWORK_TABLE;
+        }
+
+        addToBatch(tableName, values);
+        return 1;
     }
 
     private long insertSingleValueData(String tableName, SensorEvent sensorEvent) {
@@ -572,7 +571,7 @@ public class RecordingDatabaseHelper extends SQLiteOpenHelper {
                 String time = cursor.getString(0);
 
                 xmlSerializer.startTag(null, "when");
-                xmlSerializer.text(time);  // 转化成两步路相同格式
+                xmlSerializer.text(time);
                 xmlSerializer.endTag(null, "when");
             }
         }
