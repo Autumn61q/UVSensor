@@ -2,26 +2,48 @@
 ## 📖 Introduction
 **UVSensor** is an Android application developed for the smartphone-based data collection. It leverages the device's built-in sensors and location services to provide the users with the data recording, visualizing and exporting functions.
 ## ✨ Main functions
-### 1. Smart Sensor Integration 
-**Calls the device’s location services and sensors to record environmental data based on the configuration.**
-<img src="https://github.com/user-attachments/assets/e97c049e-e8bc-47a3-8992-e2ac4eb70f24" alt="UVSensor screenshot" width="480">
-UVSensor provides users with several commonly used location services and sensors:
-service type | service name | links for more info
----|---|---
-location | GPS location | https://developer.android.com/reference/android/location/LocationManager#GPS_PROVIDER 
-location | Network location | https://developer.android.com/reference/android/location/LocationManager#NETWORK_PROVIDER
-motion | Accelerometer (加速度计) | [Sensor.TYPE_ACCELEROMETER](https://developer.android.com/reference/android/hardware/Sensor#TYPE_ACCELEROMETER)
-motion | Gyroscope (陀螺仪) | [Sensor.TYPE_GYROSCOPE](https://developer.android.com/reference/android/hardware/Sensor#TYPE_GYROSCOPE)
-motion | Gravity sensor (重力传感器) | [Sensor.TYPE_GRAVITY](https://developer.android.com/reference/android/hardware/Sensor#TYPE_GRAVITY)
-motion | Linear acceleration sensor (线性加速度传感器) | [Sensor.TYPE_LINEAR_ACCELERATION](https://developer.android.com/reference/android/hardware/Sensor#TYPE_LINEAR_ACCELERATION)
-motion | Rotation vector sensor (旋转矢量传感器) | [Sensor.TYPE_ROTATION_VECTOR](https://developer.android.com/reference/android/hardware/Sensor#TYPE_ROTATION_VECTOR)
-position | Magnetic field sensor (磁场传感器) | [Sensor.TYPE_MAGNETIC_FIELD](https://developer.android.com/reference/android/hardware/Sensor#TYPE_MAGNETIC_FIELD)
-environment | Light sensor (光线传感器) | [Sensor.TYPE_LIGHT](https://developer.android.com/reference/android/hardware/Sensor#TYPE_LIGHT)
-environment | Pressure sensor (气压传感器) | [Sensor.TYPE_PRESSURE](https://developer.android.com/reference/android/hardware/Sensor#TYPE_PRESSURE)
-position | Proximity sensor (近程传感器) | [Sensor.TYPE_PROXIMITY](https://developer.android.com/reference/android/hardware/Sensor#TYPE_PROXIMITY)
-environment | Ambient temperature sensor (环境温度传感器) | [Sensor.TYPE_AMBIENT_TEMPERATURE](https://developer.android.com/reference/android/hardware/Sensor#TYPE_AMBIENT_TEMPERATURE)
-environment | Relative humidity sensor (相对湿度传感器) | [Sensor.TYPE_RELATIVE_HUMIDITY](https://developer.android.com/reference/android/hardware/Sensor#TYPE_RELATIVE_HUMIDITY)
-motion | Step counter (计步器) | [Sensor.TYPE_STEP_COUNTER](https://developer.android.com/reference/android/hardware/Sensor#TYPE_STEP_COUNTER)
+### 1. Service configuration
+**Calls the device’s location services and sensors to record environmental data based on the configuration.**  
 
-2. Diverse visualizations for the recording data
-3. Enable the data exportation for further analysis
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/e97c049e-e8bc-47a3-8992-e2ac4eb70f24" alt="UVSensor screenshot" width="250">
+</p>
+<p align="center"><em>Figure 1. UVSensor configuration page</em></p>
+UVSensor provides users with several commonly used location services and sensors: 
+<div align="center">
+  
+Service Type | Service Name | Links for More Info
+---|---|---
+location | GPS location (GPS 定位) | [GPS_PROVIDER](https://developer.android.com/reference/android/location/LocationManager#GPS_PROVIDER)
+location | Network location (网络定位) | [NETWORK_PROVIDER](https://developer.android.com/reference/android/location/LocationManager#NETWORK_PROVIDER)
+sensor | Accelerometer (加速度计) | [TYPE_ACCELEROMETER](https://developer.android.com/reference/android/hardware/Sensor#TYPE_ACCELEROMETER)
+sensor | Gyroscope (陀螺仪) | [TYPE_GYROSCOPE](https://developer.android.com/reference/android/hardware/Sensor#TYPE_GYROSCOPE)
+sensor | Gravity sensor (重力传感器) | [TYPE_GRAVITY](https://developer.android.com/reference/android/hardware/Sensor#TYPE_GRAVITY)
+sensor | Linear acceleration sensor (线性加速度传感器) | [TYPE_LINEAR_ACCELERATION](https://developer.android.com/reference/android/hardware/Sensor#TYPE_LINEAR_ACCELERATION)
+sensor | Rotation vector sensor (旋转矢量传感器) | [TYPE_ROTATION_VECTOR](https://developer.android.com/reference/android/hardware/Sensor#TYPE_ROTATION_VECTOR)
+sensor | Magnetic field sensor (磁场传感器) | [TYPE_MAGNETIC_FIELD](https://developer.android.com/reference/android/hardware/Sensor#TYPE_MAGNETIC_FIELD)
+sensor | Light sensor (光线传感器) | [TYPE_LIGHT](https://developer.android.com/reference/android/hardware/Sensor#TYPE_LIGHT)
+sensor | Pressure sensor (气压传感器) | [TYPE_PRESSURE](https://developer.android.com/reference/android/hardware/Sensor#TYPE_PRESSURE)
+sensor | Proximity sensor (近程传感器) | [TYPE_PROXIMITY](https://developer.android.com/reference/android/hardware/Sensor#TYPE_PROXIMITY)
+sensor | Ambient temperature sensor (环境温度传感器) | [TYPE_AMBIENT_TEMPERATURE](https://developer.android.com/reference/android/hardware/Sensor#TYPE_AMBIENT_TEMPERATURE)
+sensor | Relative humidity sensor (相对湿度传感器) | [TYPE_RELATIVE_HUMIDITY](https://developer.android.com/reference/android/hardware/Sensor#TYPE_RELATIVE_HUMIDITY)
+sensor | Step counter (计步器) | [TYPE_STEP_COUNTER](https://developer.android.com/reference/android/hardware/Sensor#TYPE_STEP_COUNTER)
+</div>
+
+> **Tips**
+> 1. Opening at least one of the **location types** is mandatory for subsequent data recording.  
+> 2. UVSensor automatically disables unsupported service types on the current device, and those switches cannot be opened.
+> 3. Each service block includes a collapsible section — click it to navigate to the corresponding detail page.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/144261c2-a0b8-4111-ac71-8bc6f37954b7" alt="config & detail" width="730">
+</p> 
+<p align="center"><em>Figure 2. navigate to the corresponding detail page</em></p>
+
+### 2. Diverse visualizations
+**Visualize the the data during recording**
+The trajectory, gotten from the location points, are drawn on the map.
+
+
+### 3. Data Export for Analysis
+## 🔎 Tips with more details
