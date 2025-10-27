@@ -96,6 +96,6 @@ When the recording finishes, users can export the recording data for further ana
 All data will be exported as CSV files. A KML file is generated additionally for location points, so that it can be visualized in <a href="https://www.google.com/earth/">Google Earth</a>.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/e1e47c29-d636-4ac4-b5cd-5fe4f1602436" alt="config & detail" width="730">
+  <img src="https://github.com/user-attachments/assets/e4ff7406-7002-495a-a88f-d4494754cd32" alt="config & detail" width="730">
 </p> 
 <p align="center"><em>Figure: The exported data</em></p>
