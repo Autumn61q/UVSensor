@@ -1,14 +1,23 @@
 # 🌞UVSensor
 ## 📖 Introduction
 **UVSensor** is an Android application developed for the smartphone-based data collection. It leverages the device's built-in sensors and location services to provide the users with the data recording, visualizing and exporting functions.
-## ✨ Main functions
+## 📍 Quick Start
+1. Clone this repository:
+```
+git clone https://github.com/Autumn61q/UVSensor.git
+cd UVSensor
+```
+2. Run in Android Studio  
+3. Connect your Android device (or start an emulator)  
+4. Start!
+## 🗺️ Main functions
 ### 1. Service configuration
 **Call the device’s location services and sensors to record environmental data based on the configuration.**  
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/e97c049e-e8bc-47a3-8992-e2ac4eb70f24" alt="UVSensor screenshot" width="250">
 </p>
-<p align="center"><em>UVSensor configuration page</em></p>
+<p align="center"><em>Figure: UVSensor configuration page</em></p>
 UVSensor provides users with several commonly used location services and sensors: 
 <div align="center">
   
@@ -35,7 +44,7 @@ Each service block includes a collapsible section — click it to navigate to th
 <p align="center">
   <img src="https://github.com/user-attachments/assets/144261c2-a0b8-4111-ac71-8bc6f37954b7" alt="config & detail" width="730">
 </p> 
-<p align="center"><em>Navigate to the corresponding detail page</em></p>
+<p align="center"><em>Figure: Navigate to the corresponding detail page</em></p>
 
 > **Tips**
 > 1. Opening at least one of the **location types** is mandatory for subsequent data recording.  
@@ -51,7 +60,7 @@ The trajectory, gotten from the location points, are drawn on the map during the
     <img src="https://github.com/user-attachments/assets/24eba1fb-b356-460d-a876-cb527596c649" alt="traj_demo" width="250">
   </a>
 </p>
-<p align="center"><em>Trajectory visualization demo</em></p>
+<p align="center"><em>Video: Trajectory visualization demo</em></p>
 
 Users can select which trajectories to show through <img src="https://github.com/user-attachments/assets/bf4b18b5-b403-4f8f-9d57-28ecc58f8c95" alt="icon" width="20">, GPS or Network, if the corresponding location service is active during the recording.  
 GPS trajectory is blue color scheme, while Network trajectory is green color scheme. Different <a href="https://developer.android.com/reference/android/location/Location.html#getAccuracy()" target="_blank">location accuracy</a>  corresponds to different color intensities. The table below gives more specific correspondence:
@@ -77,10 +86,10 @@ The location accuracy, as well as the data recorded by the sensors, are visualiz
     <img src="https://github.com/user-attachments/assets/c0579e88-ea00-4673-95df-297ee889393f" alt="traj_demo" width="250">
   </a>
 </p>
-<p align="center"><em>Coordinate axes visualization demo: accelerometer</em></p>
+<p align="center"><em>Video: Coordinate axes visualization demo: accelerometer</em></p>
 
 > **Tips**  
-> 1.Trajectory is updated in real-time, while data on the coordinate axes is updated every two seconds.
+> 1. Trajectory is updated in real-time, while data on the coordinate axes is updated every two seconds.
 
 ### 3. Data Export for Analysis
 When the recording finishes, users can export the recording data for further analysis.  
@@ -89,4 +98,4 @@ All data will be exported as CSV files. A KML file is generated additionally for
 <p align="center">
   <img src="https://github.com/user-attachments/assets/e1e47c29-d636-4ac4-b5cd-5fe4f1602436" alt="config & detail" width="730">
 </p> 
-<p align="center"><em>The exported data</em></p>
+<p align="center"><em>Figure: The exported data</em></p>
