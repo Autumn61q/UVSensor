@@ -18,10 +18,11 @@ This project uses the AMap SDK, which requires developers to apply for their own
    <meta-data
        android:name="com.amap.api.v2.apikey"
        android:value="Replace_with_your_own_key" />
+   ```
 
-3. Run in Android Studio  
-4. Connect your Android device (or start an emulator)  
-5. Start!
+### 3. Run in Android Studio  
+### 4. Connect your Android device (or start an emulator)  
+### 5. Start!
 ## 🗺️ Main functions
 ### 1. Service configuration
 **Call the device’s location services and sensors to record environmental data based on the configuration.**  
