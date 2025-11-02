@@ -2,14 +2,26 @@
 ## 📖 Introduction
 **UVSensor** is an Android application developed for the smartphone-based environmental data collection in urban villages (UV). It leverages the device's built-in sensors and location services to provide the users with the data recording, visualizing and exporting functions.
 ## 📍 Quick Start
-1. Clone this repository:
+### 1. Clone this repository:
 ```
 git clone https://github.com/Autumn61q/UVSensor.git
 cd UVSensor
 ```
-2. Run in Android Studio  
-3. Connect your Android device (or start an emulator)  
-4. Start!
+### 2. Configure AMap API Key
+
+This project uses the AMap SDK, which requires developers to apply for their own API Key.
+
+-  Go to the [AMap Developer Platform](https://lbs.amap.com/) to register and request an API Key for the Android platform.
+-   In [`app/src/main/AndroidManifest.xml`](https://github.com/Autumn61q/UVSensor/blob/master/app/src/main/AndroidManifest.xml), locate the following configuration:
+
+   ```xml
+   <meta-data
+       android:name="com.amap.api.v2.apikey"
+       android:value="Replace_with_your_own_key" />
+
+3. Run in Android Studio  
+4. Connect your Android device (or start an emulator)  
+5. Start!
 ## 🗺️ Main functions
 ### 1. Service configuration
 **Call the device’s location services and sensors to record environmental data based on the configuration.**  
