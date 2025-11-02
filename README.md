@@ -61,7 +61,7 @@ The trajectory, gotten from the location points, are drawn on the map during the
 <p align="center"><em>Trajectory visualization demo</em></p>
 
 Users can select which trajectories to show through <img src="https://github.com/user-attachments/assets/bf4b18b5-b403-4f8f-9d57-28ecc58f8c95" alt="icon" width="20">, GPS or Network, if the corresponding location service is active during the recording.  
-GPS trajectory is blue color scheme, while Network trajectory is green color scheme. Different <a href="https://developer.android.com/reference/android/location/Location.html#getAccuracy()" target="_blank">location accuracy</a>  corresponds to different color intensities. The table below gives more specific correspondence:
+GPS trajectory is blue color scheme, while Network trajectory is green color scheme. Different <a href="https://developer.android.com/reference/android/location/Location.html#getAccuracy()" target="_blank">location accuracy</a>  is visualized through the circle, whose center is the current location and the radius is location, the color of the trajectory corresponds to different color intensities. The table below gives more specific correspondence:
 <div align="center">
   
 | Location type | Accuracy range | Color (Hex) | Preview |
