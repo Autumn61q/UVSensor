@@ -59,7 +59,7 @@
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="4ae7198ee167223dea1973b16b5a78e2" />
+            android:value="换成自己的key" />
 
 <!--        exabled = false means the sercice cannot be bindded dynamically through intent-->
 <!--        exported = false means only my app can use the service-->
